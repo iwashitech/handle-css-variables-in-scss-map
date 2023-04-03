@@ -1,0 +1,31 @@
+$sns_list: (
+  twitter: (
+    name: ツイッター,
+    decimal-val: 3.14,
+    num: --num-0,
+  ),
+  fb: (
+    name: フェイスブック,
+    decimal-val: 2.14,
+    num: --num-1,
+  ),
+  insta: (
+    name: インスタ,
+    decimal-val: 1.73,
+    num: --num-2,
+  )
+);
+
+@each $sns_name, $property in $sns_list{
+  $name: map-get($property, name);
+  $decimal: map-get($property, decimal-val);
+  $num: map-get($property, num);
+
+  /* #{$name} */
+  .#{$sns_name} {
+    --decimal: #{$decimal};
+    &::after {
+      --num: var(#{$num});
+    }
+  }
+}
